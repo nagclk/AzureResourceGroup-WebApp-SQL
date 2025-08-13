@@ -68,7 +68,7 @@
       "type": "Microsoft.Sql/servers",
       "apiVersion": "2021-02-01-preview",
       "name": "[variables('sqlserverName')]",
-      "location": "[resourceGroup().location]",
+      "location": "[parameters('location')]",
       "tags": {
         "displayName": "SQL Server"
       },
@@ -83,7 +83,7 @@
       "type": "Microsoft.Sql/servers/databases",
       "apiVersion": "2021-02-01-preview",
       "name": "[format('{0}/{1}', variables('sqlserverName'), variables('databaseName'))]",
-      "location": "[resourceGroup().location]",
+      "location": "[parameters('location')]",
       "tags": {
         "displayName": "Database"
       },
@@ -114,7 +114,7 @@
       "type": "Microsoft.Web/serverfarms",
       "apiVersion": "2020-12-01",
       "name": "[variables('hostingPlanName')]",
-      "location": "[resourceGroup().location]",
+      "location": "[parameters('location')]",
       "tags": {
         "displayName": "HostingPlan"
       },
@@ -128,7 +128,7 @@
       "type": "Microsoft.Web/sites",
       "apiVersion": "2020-12-01",
       "name": "[variables('websiteName')]",
-      "location": "[resourceGroup().location]",
+      "location": "[parameters('location')]",
       "tags": {
         "[format('hidden-related:{0}', resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName')))]": "empty",
         "displayName": "Website"
@@ -159,7 +159,7 @@
       "type": "Microsoft.Insights/components",
       "apiVersion": "2020-02-02",
       "name": "[format('AppInsights{0}', variables('websiteName'))]",
-      "location": "[resourceGroup().location]",
+      "location": "[parameters('location')]",
       "tags": {
         "[format('hidden-link:{0}', resourceId('Microsoft.Web/sites', variables('websiteName')))]": "Resource",
         "displayName": "AppInsightsComponent"
